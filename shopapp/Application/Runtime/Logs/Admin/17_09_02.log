@@ -1,0 +1,33 @@
+[ 2017-09-02T01:03:13+08:00 ] 127.0.0.1 /index.php/Admin/Index/right.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000283s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000455s ]
+
+[ 2017-09-02T01:03:15+08:00 ] 127.0.0.1 /index.php/Admin/Index/imgtable.html
+ERR: 非法操作:imgtable
+
+[ 2017-09-02T01:03:17+08:00 ] 127.0.0.1 /index.php/Admin/Index/default.html
+ERR: 非法操作:default
+
+[ 2017-09-02T01:03:19+08:00 ] 127.0.0.1 /index.php/Admin/Index/default.html
+ERR: 非法操作:default
+
+[ 2017-09-02T01:03:29+08:00 ] 127.0.0.1 /index.php/Admin/Index/default.html
+ERR: 非法操作:default
+
+[ 2017-09-02T01:05:36+08:00 ] 127.0.0.1 /index.php/Admin/Index/form.html
+ERR: 非法操作:form
+
+[ 2017-09-02T01:05:36+08:00 ] 127.0.0.1 /index.php/Admin/Index/imgtable.html
+ERR: 非法操作:imgtable
+
+[ 2017-09-02T01:05:38+08:00 ] 127.0.0.1 /index.php/Admin/Index/right.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000279s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000588s ]
+
+[ 2017-09-02T01:05:41+08:00 ] 127.0.0.1 /index.php/Admin/Index/right.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000357s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000602s ]
+
