@@ -70,21 +70,37 @@ $(document).ready(function(){
         <th>价格</th>
         <th>数量</th>
         <th>重量</th>
+        <th>图片</th>
         <th>创建时间</th>
         <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <?php if(is_array($info)): foreach($info as $k=>$v): ?><tr>
-        <td><input name="" type="checkbox" value="" /></td>
-        <td><?php echo ($v["goods_id"]); ?></td>
-        <td><?php echo ($v["goods_name"]); ?></td>
-        <td><?php echo ($v["goods_price"]); ?></td>
-        <td><?php echo ($v["goods_number"]); ?></td>
-        <td><?php echo ($v["goods_weight"]); ?></td>
-        <td><?php echo (date("Y-m-d H:i:s","$v[goods_create_time]")); ?></td>
-            <td> <a href="<?php echo U('upd',array('goods_id' => $v['goods_id']));?>" class="tablelink">修改</a>&nbsp;&nbsp;<a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
-        </tr><?php endforeach; endif; ?>
+        <!--<?php if(is_array($info)): foreach($info as $k=>$v): ?>-->
+        <!--<tr>-->
+        <!--<td><input name="" type="checkbox" value="" /></td>-->
+        <!--<td><?php echo ($v["goods_id"]); ?></td>-->
+        <!--<td><?php echo ($v["goods_name"]); ?></td>-->
+        <!--<td><?php echo ($v["goods_price"]); ?></td>-->
+        <!--<td><?php echo ($v["goods_number"]); ?></td>-->
+        <!--<td><?php echo ($v["goods_weight"]); ?></td>-->
+        <!--<td><?php echo (date("Y-m-d H:i:s","$v[goods_create_time]")); ?></td>-->
+            <!--<td> <a href="<?php echo U('upd',array('goods_id' => $v['goods_id']));?>" class="tablelink">修改</a>&nbsp;&nbsp;<a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+        <!--</tr>-->
+        <!--<?php endforeach; endif; ?>-->
+        <?php if(is_array($info)): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 3 );++$i; if($mod == 1): ?><tr style="background-color:lightblue;">
+                    <?php else: ?>
+                <tr><?php endif; ?>
+            <td><input name="" type="checkbox" value="" /></td>
+            <td><?php echo ($v["goods_id"]); ?></td>
+            <td><?php echo ($v["goods_name"]); ?></td>
+            <td><?php echo ($v["goods_price"]); ?></td>
+            <td><?php echo ($v["goods_number"]); ?></td>
+            <td><?php echo ($v["goods_weight"]); ?></td>
+            <td><img src="<?php echo (substr($v["goods_big_img"],1)); ?>" alt="" width="80" height="80" /></td>
+            <td><?php echo (date("Y-m-d H:i:s",$v["goods_create_time"])); ?></td>
+            <td><a href="<?php echo U('upd',array('goods_id'=>$v['goods_id']));?>" class="tablelink">修改</a>&nbsp;&nbsp;<a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
+            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </tbody>
     </table>
     

@@ -9,6 +9,8 @@ namespace Admin\Controller;
 use Admin\Model\GoodsModel;
 use Admin\Model\QqModel;
 use Think\Controller;
+use Think\Image;
+use Think\Think;
 
 class GoodsController extends Controller {
     function showlist() {
@@ -31,36 +33,66 @@ class GoodsController extends Controller {
         $this->display();
     }
 
-    function tianjia() {
-        $goods = D('goods');
-//        $data = array(
-//            'goods_name11' => 'test',
-//            'aa'=> '123'
-//        );
-//        $ret = $goods->add($data);
-//        dump($ret);
 
-        //ac模式
-//    $goods->goods_name = 'a';
-//    $goods->goods_price = '123';
-//    $newid = $goods->add();
-//    dump($newid);
-        if(IS_POST) {
-           $data = I('post.');
-           $data['goods_create_time'] = time();
+    function tianjia(){
+        $goods = D('Goods');
+        //两个业务逻辑：展示form表单、收集信息入库
+        if(IS_POST){
+            //收集信息入库
+            //dump($_POST);
+            $shuju = I('post.'); //通过I()函数收集form表单信息
+            //该I()函数可以过滤非法的信息
+            //在没有非法信息情况下，返回的信息与传递的信息完全一致
+            $shuju['goods_create_time'] = time();
+//            echo $_FILES['goods_logo']['error'];
+//            exit;
+            /************对附件图片进行处理************/
+            if($_FILES['goods_logo']['error']===0){
+                //1) 上传图片
+                $cfg = array(
+                    'rootPath'      =>  './Public/Upload/', //保存根路径
+                );
 
-           $newid = $goods->add($data);
-//           dump($newid);
-            if($newid) {
-                $this->success('添加成功',U('showlist'),4);
-            } else {
-                $this->error('添加失败',U('tianjia'),2);
+                $up = new \Think\Upload($cfg);
+                //uploadOne()方法会返回附件的"存储目录"和"名字信息"
+                $z = $up -> uploadOne($_FILES['goods_logo']);
+                //把附件存储到数据库(附件路径名存储给数据表记录)
+                //./Public/Upload/2017-02-01/589148fb1293e.jpg
+                $shuju['goods_big_img'] = $up->rootPath.$z['savepath'].$z['savename'];
+
+                /*var_dump($shuju['goods_big_img']);
+                exit;*/
+                //2) 制作缩略图
+                $im = new \Think\Image();//A.实例化Image对象
+                $im -> open($shuju['goods_big_img']);//B.打开原图
+                //$im -> thumb(70,70,1);//C.制作缩略图(等比例)
+                $im -> thumb(70,70,6);//C.制作缩略图(固定尺寸)
+                //D.保存制作好的缩略图
+                //原图：./Public/Upload/2017-02-01/589148fb1293e.jpg
+                //缩略图./Public/Upload/2017-02-01/small_589148fb1293e.jpg
+                $smallPathName = $up->rootPath.$z['savepath'].'small_'.$z['savename'];
+                $im -> save($smallPathName);
+                //E. 存储缩略图路径名到数据库
+                $shuju['goods_small_img'] = $smallPathName;
             }
-        } else {
+            /************对附件图片进行处理************/
 
-            $this->display();
+            $newid = $goods -> add($shuju);
+
+            if($newid){
+                //添加成功，页面跳转到商品列表页面去
+                $this -> success('添加成功',U('showlist'),1);
+            }else{
+                //添加失败，给本身页面跳转
+                $this -> error('添加失败',U('tianjia'),2);
+            }
+        }else{
+            //展示form表单
+            $this -> display();
         }
     }
+
+
 
     function upd() {
         $goods = D('Goods');

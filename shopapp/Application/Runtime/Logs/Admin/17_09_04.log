@@ -1,0 +1,31 @@
+[ 2017-09-04T18:41:59+08:00 ] 127.0.0.1 /index.php/Admin/Index/right.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000271s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000467s ]
+
+[ 2017-09-04T18:42:56+08:00 ] 127.0.0.1 /index.php/Admin/User/regist
+ERR: 无法加载控制器:User
+
+[ 2017-09-04T19:36:09+08:00 ] 127.0.0.1 /index.php/Admin/User/regist
+ERR: 无法加载控制器:User
+
+[ 2017-09-04T19:36:10+08:00 ] 127.0.0.1 /index.php/Admin/User/regist
+ERR: 无法加载控制器:User
+
+[ 2017-09-04T21:21:28+08:00 ] 127.0.0.1 /index.php/Admin/Manager/verifying
+ERR: 非法操作:verifying
+
+[ 2017-09-04T21:29:54+08:00 ] 127.0.0.1 /index.php/Admin/Manager/verifyImg1
+ERR: 非法操作:verifyImg1
+
+[ 2017-09-04T22:44:29+08:00 ] 127.0.0.1 /index.php/Admin/Index/right.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000271s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000444s ]
+
+[ 2017-09-04T23:32:51+08:00 ] 127.0.0.1 /index.php/Admin/Manager/__CONTROLLER_verifyImg/0.36564095399028607
+ERR: 非法操作:__CONTROLLER_verifyImg
+
+[ 2017-09-04T23:43:34+08:00 ] 127.0.0.1 /index.php/Admin/Manager/__CONTROLLER_/verifyImg/0.6854177362575573
+ERR: 非法操作:__CONTROLLER_
+
